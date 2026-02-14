@@ -14,8 +14,7 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  ///메인은 일단 건들지 마세용~~ 예시코드만 넣어놀게요~
+  // 각자 함수 돌려보세용~
   tree(LED1);
 
   delay(1000);
