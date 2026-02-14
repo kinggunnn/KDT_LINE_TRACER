@@ -1,4 +1,3 @@
-// 파일 이름양식 : function_본인이름.c 또는 h
 #ifndef FUNCTION_MAIN_H
 #define FUNCTION_MAIN_H
 
