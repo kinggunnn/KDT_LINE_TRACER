@@ -1,5 +1,3 @@
-
-
 #include "my_function.h"
 
 int SL = 1, SC = 1, SR = 1;
@@ -18,9 +16,21 @@ void setup() {
 
   Serial.begin(9600);
   Serial.println("hello arduino");
+
+  myservo.attach(2); // 서범 : 서보 모터를 몇 번 핀으로 설정할지
+  Serial.begin(9600); // 서범 : 시리얼 초기화 
 }
 
 void loop() {
+  // 서범 : 서보모터
+  int servo_angle = 90; 
+  servo_control(servo_angle);
+
+  // 서범 : 라인트레이서 값 출력하는 함수
+  line_value_serial(A3, A4, A5, 100);
+
+
+
   int L = digitalRead(L_Line);
   int C = digitalRead(C_Line);
   int R = digitalRead(R_Line);

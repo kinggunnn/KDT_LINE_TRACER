@@ -2,6 +2,10 @@
 #define MY_FUNCTION_H
 
 #include <Arduino.h>
+#include <Servo.h> // 서보모터 헤더파일 추가
+
+extern Servo myservo; // 서보모터 생성자 'myservo'가 어딘가에 있다는걸 알려주는 부분.
+
 
 // 핀 정의
 #define RightMotor_E_pin 5
@@ -20,5 +24,13 @@
 #define R_MotorSpeed 100
 
 void motor_role(int R_motor, int L_motor);
+
+// 서범 : 서보 모터 정의
+void servo_control(int angle);
+
+// 서범 : 라인트레이서 정의
+void line_value_serial(uint8_t pin1, uint8_t pin2, uint8_t pin3, int delay__);
+
+//
 
 #endif
