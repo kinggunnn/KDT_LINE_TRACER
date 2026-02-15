@@ -1,6 +1,6 @@
 #include "my_function.h"
 
-/// 메인 -> 브런치 테스트
+/// 메인 -> 브런치 테스트 2
 
 
 int SL = 1, SC = 1, SR = 1;
