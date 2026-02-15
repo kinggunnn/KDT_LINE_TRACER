@@ -1,5 +1,8 @@
 #include "my_function.h"
 
+/// 메인 -> 브런치 테스트
+
+
 int SL = 1, SC = 1, SR = 1;
 
 void setup() {
@@ -22,7 +25,7 @@ void setup() {
 }
 
 void loop() {
-  // 서범 : 서보모터
+  // 서범 : 서보모터 
   int servo_angle = 90; 
   servo_control(servo_angle);
 
