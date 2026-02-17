@@ -1,7 +1,7 @@
 
 
 #include "my_function.h"
-//hi 테스트중
+//hr님 테스트중~~~
 
 int SL = 1, SC = 1, SR = 1;
 
