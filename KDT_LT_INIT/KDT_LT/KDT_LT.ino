@@ -28,6 +28,7 @@ void setup() {
 }
 
 void loop() {
+
   // 서범 : 서보모터 -> 바꿀 때 사용하면 됨
   int servo_angle = 90; 
   servo_control(servo_angle);
