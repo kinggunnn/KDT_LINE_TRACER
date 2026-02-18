@@ -2,7 +2,7 @@
 // 모듈 로딩
 //===============================================================
 
-#include "my_function.h"
+#include "LSB_function.h"
 
 Servo myservo;  // 'myservo'라는 서보모터 생성자를 만드는 부분
 

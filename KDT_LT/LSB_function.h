@@ -1,11 +1,10 @@
-#ifndef MY_FUNCTION_H
-#define MY_FUNCTION_H
+#ifndef LSB_FUNCTION_H
+#define LSB_FUNCTION_H
 
 #include <Arduino.h>
 #include <Servo.h> // 서보모터 헤더파일 추가
 
 extern Servo myservo; // 서보모터 생성자 'myservo'가 어딘가에 있다는걸 알려주는 부분.
-
 
 // 핀 정의
 #define RightMotor_E_pin 5  // 오른쪽 모터의 Enable & PWM
