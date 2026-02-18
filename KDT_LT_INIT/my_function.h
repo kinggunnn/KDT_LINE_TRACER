@@ -30,17 +30,26 @@ void motor_role(int R_motor, int L_motor);
 #define echoPin 12
 // 리모컨 핀 정의
 #define RECV_PIN A0
+
 // =======================================
 // 초음파 값 출력 함수
 void initUltra();
 void printUltra();
+
 // =======================================
 // 리모컨 값 출력 함수
+extern IRrecv irrecv;
+extern decode_results results;
+
 void initIR();
 void checkIR();
+
 // =======================================
 // 서보모터 90도 세팅 함수
+extern Servo servo;
 void initServo();
+
+
 // =======================================
 // 시리얼로 주행 제어 함수
 void initMotor();
