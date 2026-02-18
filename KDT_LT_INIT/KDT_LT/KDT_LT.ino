@@ -1,10 +1,11 @@
-#include "my_function.h"
+#include "main_function.h"
 
 // "강한 우회전 / 강한 좌회전 / 직진 / 정지" 구현한 코드
 // + 흰색이 500ms 이상 유지되면 정지
 
 int SL = 1, SC = 1, SR = 1;
 unsigned long lostTime = 0;
+
 
 void setup() {
   
@@ -23,7 +24,7 @@ void setup() {
   Serial.begin(9600);
   Serial.println("hello arduino");
 
-  myservo.attach(2); // 서범 : 서보 모터를 몇 번 핀으로 설정할지
+  servo.attach(2); // 서범 : 서보 모터를 몇 번 핀으로 설정할지
 }
 
 void loop() {

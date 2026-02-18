@@ -2,9 +2,9 @@
 // 모듈 로딩
 //===============================================================
 
-#include "LSB_function.h"
+#include "main_function.h"
 
-Servo myservo;  // 'myservo'라는 서보모터 생성자를 만드는 부분
+
 
 //====================================================
 // 작업자 : 이서범
@@ -15,7 +15,7 @@ Servo myservo;  // 'myservo'라는 서보모터 생성자를 만드는 부분
 // return 값 : void(없음)
 //====================================================
 void servo_control(int angle) {
-  myservo.write(angle);
+  servo.write(angle);
 }
 
 

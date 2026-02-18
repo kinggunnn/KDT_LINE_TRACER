@@ -1,16 +1,16 @@
 //===============================================================
 // 모듈 로딩
 //===============================================================
-#include "my_function.h"
+#include "main_function.h"
 
 #include <Servo.h>
 #include <SoftwareSerial.h>
 
-Servo EduServo;
+Servo servo;
 
 
 // 전역변수 정의(여기서 메모리 할당)
-int Ultra_d = 0;
+//int Ultra_d = 0;
 
 static SoftwareSerial bluetooth(BT_RXD, BT_TXD);
 int L_MotorSpeed = 153;
@@ -69,11 +69,11 @@ int Ultrasonic() {
 //====================================================
 int Servo_con() {
   int val;
-  EduServo.write(30);
+  servo.write(30);
   delay(300);
   int Ult_30 = Ultrasonic();
   delay(700);
-  EduServo.write(150);
+  servo.write(150);
   delay(300);
   int Ult_150 = Ultrasonic();
   delay(700);
@@ -83,7 +83,7 @@ int Servo_con() {
   } else {
     val = 0;
   }
-  EduServo.write(90);
+  servo.write(90);
   return val;
 }
 

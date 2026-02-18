@@ -1,4 +1,4 @@
-#include "my_function.h"
+#include "main_function.h"
 
 //====================================================
 // 작업자 : 박서희
@@ -37,19 +37,19 @@ void printUltra() {
 // 매개변수 : 없음
 // return 값 : void(없음)
 //====================================================
-IRrecv irrecv(RECV_PIN);
-decode_results results;
+// IRrecv irrecv(RECV_PIN);
+// decode_results results;
 
-void initIR() {
-	irrecv.enableIRIn();
-}
+// void initIR() {
+// 	irrecv.enableIRIn();
+// }
 
-void checkIR() {
-	if (irrecv.decode(&results)) {
-		Serial.println(results.value, HEX);
-		irrecv.resume();
-	}
-}
+// void checkIR() {
+// 	if (irrecv.decode(&results)) {
+// 		Serial.println(results.value, HEX);
+// 		irrecv.resume();
+// 	}
+// }
 
 //====================================================
 // 작업자 : 박서희
@@ -59,7 +59,7 @@ void checkIR() {
 // 매개변수 : 없음
 // return 값 : void(없음)
 //====================================================
-Servo servo;
+
 
 void initServo() {
 	servo.attach(2);

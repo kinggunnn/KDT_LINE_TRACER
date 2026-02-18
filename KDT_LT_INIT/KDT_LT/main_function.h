@@ -1,88 +1,95 @@
-#ifndef LSB_FUNCTION_H
-#define LSB_FUNCTION_H
+#ifndef MAIN_FUNCTION_H
+#define MAIN_FUNCTION_H
 
 #include <Arduino.h>
-#include <IRremote.h> // 적외선 리모컨
-extern int Ultra_d;
+#include <Servo.h>
+#include <SoftwareSerial.h>
 
-#include <Servo.h> // 서보모터 헤더파일 추가
-extern Servo myservo; // 서보모터 생성자 'myservo'가 어딘가에 있다는걸 알려주는 부분.
+// IR 기능 쓸 거면 주석 풀어야 extern 타입이 살아남음
+#include <IRremote.h>
 
+//====================================================
+// 핀 정의 (공통)
+//====================================================
 
-// 핀 정의 모터 관련
-#define RightMotor_E_pin 5  // 오른쪽 모터의 Enable & PWM
-#define LeftMotor_E_pin  6  // 왼쪽 모터의 Enable & PWM
-#define RightMotor_1_pin 8  // 오른쪽 모터 제어선 IN1
-#define RightMotor_2_pin 9  // 오른쪽 모터 제어선 IN2
-#define LeftMotor_3_pin  10 // 왼쪽 모터 제어선 IN3
-#define LeftMotor_4_pin  11 // 왼쪽 모터 제어선 IN4
+// 모터 핀
+#define RightMotor_E_pin 5
+#define LeftMotor_E_pin  6
+#define RightMotor_1_pin 8
+#define RightMotor_2_pin 9
+#define LeftMotor_3_pin  10
+#define LeftMotor_4_pin  11
 
-// 핀 연결 정의
+// 초음파 핀
 #define trigPin 13
 #define echoPin 12
 
-
+// 블루투스 핀
 #define BT_RXD 3
 #define BT_TXD 4
 
+// 라인센서 핀 (const int 대신 define로 통일 추천)
+#define L_Line A5
+#define C_Line A4
+#define R_Line A3
 
-const int L_Line = A5;            // 왼쪽 라인트레이서 센서는 A5 핀에 연결
-const int C_Line = A4;            // 가운데 라인트레이서 센서는 A4 핀에 연결
-const int R_Line = A3;            // 오른쪽 라인트레이서 센서는 A3 핀에 연결
-
-
-//함수선언부
-void lineTrace_step();                 // 한 번 업데이트(센서읽기+모터제어)
-void stop_motors();                    // 정지(속도 0)
-
-void smartcar_step();     // 초음파+서보 스캔 기반 장애물 회피 1스텝
-void bt_bridge_init(long baud); //블루투스
-void bt_bridge_step();
-
-void rc_bt_init(long baud); //블르투스 rc카
-void rc_bt_step();
-
-
-int Ultrasonic(); //초음파
-int Servo_con(); //
-
-
-// =======================================
-// 초음파 핀 정의
-#define trigPin 13
-#define echoPin 12
-// 리모컨 핀 정의
+// IR 리모컨 핀
 #define RECV_PIN A0
 
-// =======================================
-// 초음파 값 출력 함수
-void initUltra();
-void printUltra();
+//====================================================
+// extern 객체/전역 (정의는 cpp 딱 한 곳에서만!)
+//====================================================
 
-// =======================================
-// 리모컨 값 출력 함수
+// PHS IR 객체(사용 시)
 extern IRrecv irrecv;
 extern decode_results results;
+
+// Servo 객체(프로젝트 전체에서 1개만 쓰면 extern으로 공유)
+extern Servo servo;
+
+//====================================================
+// === LJH FUNCTION ===
+//====================================================
+
+void motor_role(int R_motor, int L_motor);
+
+int Ultrasonic();
+int Servo_con();
+
+void stop_motors();
+void lineTrace_step();
+void smartcar_step();
+
+void bt_bridge_init(long baud);
+void bt_bridge_step();
+
+void rc_bt_init(long baud);
+void rc_bt_step();
+
+//====================================================
+// === PHS FUNCTION ===
+//====================================================
+
+void initUltra();
+void printUltra();
 
 void initIR();
 void checkIR();
 
-// =======================================
-// 서보모터 90도 세팅 함수
-extern Servo servo;
 void initServo();
-
-
+void initMotor();
 void commandSerialDirect();
 
-// 서범 : 서보 모터 정의
+//====================================================
+// === LSB FUNCTION ===
+//====================================================
+
 void servo_control(int angle);
-// 서범 : 라인트레이서 정의
 void line_value_serial(uint8_t pin1, uint8_t pin2, uint8_t pin3, int delay__);
-// 서범 : 모터 방향 및 속도 정의
+
 void motor_control(int R_motor, int L_motor, int R_speed, int L_speed);
-// 서범 : 오른쪽 왼쪽의 강한 회전을 정의한 함수
+
 void Right_role(int R_motor, int L_motor, int Speed);
 void Left_role(int R_motor, int L_motor, int Speed);
 
-#endif
+#endif  // MAIN_FUNCTION_H
