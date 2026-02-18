@@ -3,10 +3,10 @@
 
 #include <Arduino.h>
 #include <IRremote.h> // 적외선 리모컨
-#include <Servo.h>
-extern Servo EduServo;
 extern int Ultra_d;
 
+#include <Servo.h> // 서보모터 헤더파일 추가
+extern Servo myservo; // 서보모터 생성자 'myservo'가 어딘가에 있다는걸 알려주는 부분.
 
 
 // 핀 정의 모터 관련
@@ -26,9 +26,10 @@ extern int Ultra_d;
 #define BT_TXD 4
 
 
-#define L_Line A5
-#define C_Line A4
-#define R_Line A3
+const int L_Line = A5;            // 왼쪽 라인트레이서 센서는 A5 핀에 연결
+const int C_Line = A4;            // 가운데 라인트레이서 센서는 A4 핀에 연결
+const int R_Line = A3;            // 오른쪽 라인트레이서 센서는 A3 핀에 연결
+
 
 //함수선언부
 void lineTrace_step();                 // 한 번 업데이트(센서읽기+모터제어)
@@ -42,7 +43,6 @@ void rc_bt_init(long baud); //블르투스 rc카
 void rc_bt_step();
 
 
-void motor_role(int R_motor, int L_motor); // 모터제어
 int Ultrasonic(); //초음파
 int Servo_con(); //
 
@@ -74,5 +74,15 @@ void initServo();
 
 
 void commandSerialDirect();
+
+// 서범 : 서보 모터 정의
+void servo_control(int angle);
+// 서범 : 라인트레이서 정의
+void line_value_serial(uint8_t pin1, uint8_t pin2, uint8_t pin3, int delay__);
+// 서범 : 모터 방향 및 속도 정의
+void motor_control(int R_motor, int L_motor, int R_speed, int L_speed);
+// 서범 : 오른쪽 왼쪽의 강한 회전을 정의한 함수
+void Right_role(int R_motor, int L_motor, int Speed);
+void Left_role(int R_motor, int L_motor, int Speed);
 
 #endif
