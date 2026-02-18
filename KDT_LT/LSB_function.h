@@ -1,5 +1,5 @@
-#ifndef MY_FUNCTION_H
-#define MY_FUNCTION_H
+#ifndef LSB_FUNCTION_H
+#define LSB_FUNCTION_H
 
 #include <Arduino.h>
 #include <IRremote.h> // 적외선 리모컨
@@ -10,12 +10,12 @@ extern Servo myservo; // 서보모터 생성자 'myservo'가 어딘가에 있다
 
 
 // 핀 정의 모터 관련
-#define RightMotor_E_pin 5
-#define LeftMotor_E_pin  6
-#define RightMotor_1_pin 8
-#define RightMotor_2_pin 9
-#define LeftMotor_3_pin  10
-#define LeftMotor_4_pin  11
+#define RightMotor_E_pin 5  // 오른쪽 모터의 Enable & PWM
+#define LeftMotor_E_pin  6  // 왼쪽 모터의 Enable & PWM
+#define RightMotor_1_pin 8  // 오른쪽 모터 제어선 IN1
+#define RightMotor_2_pin 9  // 오른쪽 모터 제어선 IN2
+#define LeftMotor_3_pin  10 // 왼쪽 모터 제어선 IN3
+#define LeftMotor_4_pin  11 // 왼쪽 모터 제어선 IN4
 
 // 핀 연결 정의
 #define trigPin 13

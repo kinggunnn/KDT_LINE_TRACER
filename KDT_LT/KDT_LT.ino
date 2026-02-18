@@ -40,12 +40,6 @@ void loop() {
   int C = digitalRead(C_Line);
   int R = digitalRead(R_Line);
 
-  // 서범 : 현재 값(0/1)이 어떻게 출력되는지 확인하는 코드
-  // Serial.print("digital : ");
-  // Serial.print(L); Serial.print(", ");
-  // Serial.print(C); Serial.print(", ");
-  // Serial.print(R); Serial.print("   ");
-
   // 서범 : 모든 값에서 차선이 검출되지 않을 때, 500ms 이후 정지하는 코드
   if (L == LOW && C == LOW && R == LOW) {  // 0 0 0
     // 200ms 이상 해당 미검출 로직으로 들어오면 정지하기
@@ -56,6 +50,9 @@ void loop() {
       analogWrite(RightMotor_E_pin, 0);
       analogWrite(LeftMotor_E_pin, 0);
       Serial.println("500ms 라인 미검출로 정지");
+    }
+    else {
+      SL = L; SC = C; SR = R;
     }
   } else {
     lostTime = 0;
@@ -91,6 +88,5 @@ void loop() {
     analogWrite(LeftMotor_E_pin, 0);
     Serial.println("정지");
   }
-
   SL = L; SC = C; SR = R;
 }
