@@ -6,7 +6,6 @@
 
 Servo myservo;  // 'myservo'라는 서보모터 생성자를 만드는 부분
 
-
 //====================================================
 // 작업자 : 이서범
 // 최신화 일자 : 2026_02_15
@@ -32,35 +31,65 @@ void line_value_serial(uint8_t pin1, uint8_t pin2, uint8_t pin3, int delay__) {
   int val_1 = analogRead(pin1); // pin1 = A3 이런식으로 받아옴. -> A3는 내부적으로 define돼서 숫자로 처리됨
   int val_2 = analogRead(pin2);
   int val_3 = analogRead(pin3);
+
+  int val_1_d = digitalRead(pin1); 
+  int val_2_d = digitalRead(pin2);
+  int val_3_d = digitalRead(pin3);
   
-  Serial.print("1:");
+  Serial.println("** Analog result **");
+  Serial.print("L:");
   Serial.print(val_1);
-  Serial.print(" 2:");
+  Serial.print(" C:");
   Serial.print(val_2);
-  Serial.print(" 3:");
+  Serial.print(" R:");
   Serial.println(val_3);
+
+  Serial.println("** Digital result **");
+  Serial.print("L:");
+  Serial.print(val_1_d);
+  Serial.print(" C:");
+  Serial.print(val_2_d);
+  Serial.print(" R:");
+  Serial.println(val_3_d);
   delay(delay__);
 }
 
 
-
-//-------
-//아래는 예시니까 지우고 쓰세용~
-//아래 양식은 함수 구현하면 구현하는사람이 적어주기~
 //====================================================
-// 작업자 : 임진효
-// 최신화 일자 : 2026_02_14
-// 용도 : motor_role
-// 함수 기능 : 바퀴 속도 제어
-// 매개변수 : LED
+// 작업자 : 이서범
+// 최신화 일자 : 2026_02_15
+// 용도 : motor_control
+// 함수 기능 : 바퀴 속도 및 방향 제어
+// 매개변수 : 오른쪽 on/off , 왼쪽 on/off , 오른쪽 speed , 왼쪽 speed
 // return 값 : void(없음)
 //====================================================
-void motor_role(int R_motor, int L_motor) {
+void motor_control(int R_motor, int L_motor, int R_speed, int L_speed) {
   digitalWrite(RightMotor_1_pin, R_motor);
   digitalWrite(RightMotor_2_pin, !R_motor);
   digitalWrite(LeftMotor_3_pin, L_motor);
   digitalWrite(LeftMotor_4_pin, !L_motor);
 
-  analogWrite(RightMotor_E_pin, R_MotorSpeed);  // 우측 모터 속도값
-  analogWrite(LeftMotor_E_pin, L_MotorSpeed);   // 좌측 모터 속도값
+  analogWrite(RightMotor_E_pin, R_speed);  // 우측 모터 속도값
+  analogWrite(LeftMotor_E_pin, L_speed);   // 좌측 모터 속도값
 }
+
+void Right_role(int R_motor, int L_motor, int Speed){
+   digitalWrite(RightMotor_1_pin, R_motor);
+   digitalWrite(RightMotor_2_pin, !R_motor);
+   digitalWrite(LeftMotor_3_pin, L_motor);
+   digitalWrite(LeftMotor_4_pin, !L_motor);
+   
+   analogWrite(RightMotor_E_pin, max(Speed*0.4,50));  // 우측 모터 속도값
+   analogWrite(LeftMotor_E_pin, min(Speed*1.4,255));   // 좌측 모터 속도값
+}
+
+void Left_role(int R_motor, int L_motor, int Speed){
+   digitalWrite(RightMotor_1_pin, R_motor);
+   digitalWrite(RightMotor_2_pin, !R_motor);
+   digitalWrite(LeftMotor_3_pin, L_motor);
+   digitalWrite(LeftMotor_4_pin, !L_motor);
+   
+   analogWrite(RightMotor_E_pin, min(Speed*1.4,255));  // 우측 모터 속도값
+   analogWrite(LeftMotor_E_pin, max(Speed*0.2,50));   // 좌측 모터 속도값   
+}
+
