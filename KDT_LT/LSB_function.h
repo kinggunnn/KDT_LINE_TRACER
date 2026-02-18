@@ -14,11 +14,13 @@ extern Servo myservo; // 서보모터 생성자 'myservo'가 어딘가에 있다
 #define LeftMotor_3_pin  10 // 왼쪽 모터 제어선 IN3
 #define LeftMotor_4_pin  11 // 왼쪽 모터 제어선 IN4
 
-const int L_Line = A5;            // 왼쪽 라인트레이서 센서는 A5 핀에 연결
-const int C_Line = A4;            // 가운데 라인트레이서 센서는 A4 핀에 연결
-const int R_Line = A3;            // 오른쪽 라인트레이서 센서는 A3 핀에 연결
+#define L_Line A5            // 왼쪽 라인트레이서 센서는 A5 핀에 연결
+#define C_Line A4            // 가운데 라인트레이서 센서는 A4 핀에 연결
+#define R_Line A3            // 오른쪽 라인트레이서 센서는 A3 핀에 연결
 
-void motor_role(int R_motor, int L_motor);
+
+extern int SL, SC, SR;
+extern unsigned long lostTime;
 
 // 서범 : 서보 모터 정의
 void servo_control(int angle);
@@ -26,7 +28,10 @@ void servo_control(int angle);
 void line_value_serial(uint8_t pin1, uint8_t pin2, uint8_t pin3, int delay__);
 // 서범 : 모터 방향 및 속도 정의
 void motor_control(int R_motor, int L_motor, int R_speed, int L_speed);
-// 서범 : 오른쪽 왼쪽의 강한 회전을 정의한 함수
+// 서범 : 기본적인 주행 함수
+void driving_sys(int L, int C, int R, unsigned long &lostTime);
+
+// 서범 : 오른쪽 왼쪽의 강한 회전을 정의한 함수 -> 아직 쓰지 않음
 void Right_role(int R_motor, int L_motor, int Speed);
 void Left_role(int R_motor, int L_motor, int Speed);
 
