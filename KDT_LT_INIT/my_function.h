@@ -2,6 +2,7 @@
 #define MY_FUNCTION_H
 
 #include <Arduino.h>
+#include <IRremote.h> // 적외선 리모컨
 #include <Servo.h>
 extern Servo EduServo;
 extern int Ultra_d;
@@ -44,5 +45,34 @@ void rc_bt_step();
 void motor_role(int R_motor, int L_motor); // 모터제어
 int Ultrasonic(); //초음파
 int Servo_con(); //
+
+
+// =======================================
+// 초음파 핀 정의
+#define trigPin 13
+#define echoPin 12
+// 리모컨 핀 정의
+#define RECV_PIN A0
+
+// =======================================
+// 초음파 값 출력 함수
+void initUltra();
+void printUltra();
+
+// =======================================
+// 리모컨 값 출력 함수
+extern IRrecv irrecv;
+extern decode_results results;
+
+void initIR();
+void checkIR();
+
+// =======================================
+// 서보모터 90도 세팅 함수
+extern Servo servo;
+void initServo();
+
+
+void commandSerialDirect();
 
 #endif

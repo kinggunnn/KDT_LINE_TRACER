@@ -23,7 +23,7 @@ void setup() {
   pinMode(L_Line, INPUT);
   pinMode(C_Line, INPUT);
   pinMode(R_Line, INPUT);
-
+  
   Serial.begin(9600);
   Serial.println("hello arduino");
 }
