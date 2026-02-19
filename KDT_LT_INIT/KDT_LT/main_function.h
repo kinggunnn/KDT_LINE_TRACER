@@ -51,6 +51,12 @@ extern int SL;
 extern int SC;
 extern int SR;
 
+// basePWM()에 사용할 변수들
+extern int thresholdPWM;		// 현재 모터에 주는 PWM값(0~255)
+extern bool end;				// 측정 끝났는지 여부
+extern unsigned long lastTime;	// 마지막으로 PWM 올렸던 시간(1초마다 갱신)
+
+
 //====================================================
 // === LJH FUNCTION ===
 //====================================================
@@ -84,6 +90,7 @@ void initServo();
 void initMotor();
 void commandSerialDirect();
 
+void basePWM();
 //====================================================
 // === LSB FUNCTION ===
 //====================================================
