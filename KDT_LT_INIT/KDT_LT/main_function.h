@@ -47,6 +47,10 @@ extern decode_results results;
 // Servo 객체(프로젝트 전체에서 1개만 쓰면 extern으로 공유)
 extern Servo servo;
 
+extern int SL;
+extern int SC;
+extern int SR;
+
 //====================================================
 // === LJH FUNCTION ===
 //====================================================
@@ -91,5 +95,7 @@ void motor_control(int R_motor, int L_motor, int R_speed, int L_speed);
 
 void Right_role(int R_motor, int L_motor, int Speed);
 void Left_role(int R_motor, int L_motor, int Speed);
+void driving_sys(int L, int C, int R, unsigned long &lostTime);
+
 
 #endif  // MAIN_FUNCTION_H
